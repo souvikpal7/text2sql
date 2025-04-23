@@ -1,0 +1,17 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="text2sql",
+    version="0.0.1",
+    packages=find_packages(),  # automatically find your package modules
+    python_requires=">=3.12",
+    install_requires=[
+        "python-json-logger==3.3.0",
+        "langgraph==0.3.31"
+    ],
+    entry_points={
+        'console_scripts': [
+            'text2sql=agent.__main__:main',
+        ],
+    },
+)

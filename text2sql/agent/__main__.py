@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 def main():
     parser = argparse.ArgumentParser(description="A simple command line argument parser.")
-    parser.add_argument('-l', '--logconfig', type=str, required=True, help='Provide run_config')
+    parser.add_argument('-db', '--database', type=str, required=True, help='Provide the database name you want to work with')
 
     args = parser.parse_args()
 
