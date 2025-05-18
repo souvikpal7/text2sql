@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "text2sql2"
+version = "0.0.1"
+requires-python = ">=3.12"
+readme = "README.md"
+
+dependencies = [
+  "python-json-logger==3.3.0",
+  "langgraph==0.3.31",
+  "langchain-community==0.3.22",
+  "notebook==7.4.1",
+  "langchain-openai==0.3.14"
+]
+
+[project.scripts]
+text2sql2 = "text2sql2.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["text2sql2"]

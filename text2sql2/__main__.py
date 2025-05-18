@@ -3,10 +3,13 @@ import os
 import json
 import logging
 from logging.config import dictConfig
+from text2sql2.agent.metadata import SUPPORTED_DATABASES
+from text2sql2.agent.graphs.main_graph import SQLReactAgent
+
 
 
 cur_file_dir = os.path.dirname(os.path.realpath(__file__))
-logging_config_path = os.path.join(cur_file_dir, "configs", "logging_config.json")
+logging_config_path = os.path.join(cur_file_dir, "agent", "configs", "logging_config.json")
 assert os.path.exists(logging_config_path)
 
 with open(logging_config_path, 'r') as file:
@@ -22,6 +25,12 @@ def main():
     parser.add_argument('-db', '--database', type=str, required=True, help='Provide the database name you want to work with')
 
     args = parser.parse_args()
+
+    db_name = args.database.lower()
+    assert db_name in SUPPORTED_DATABASES
+    db_obj = eval(SUPPORTED_DATABASES[db_name])()
+    agent = SQLReactAgent(db_obj)
+    agent.run()
 
     logger.info("test logging")
     return "Test Run"
